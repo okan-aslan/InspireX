@@ -21,7 +21,6 @@ class AuthController extends Controller
 
     public function authenticate()
     {
-
     }
 
     public function store(User $user, StoreUserRequest $request)
@@ -31,8 +30,6 @@ class AuthController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-
-        $user->save();
 
         return redirect()->route('login')->with('success', 'Account created successfully ...');
     }
