@@ -19,8 +19,21 @@ class AuthController extends Controller
         return view('Auth.register');
     }
 
-    public function authenticate()
+    public function authenticate(Request $request)
     {
+        $request->only('email', 'password');
+
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8|max:255',
+        ]);
+
+        if (auth()->attempt($validated)) {
+            request()->session()->regenerate();
+
+            return redirect()->route('dashboard.index')->with('success', 'User logged-in successfully ...');
+        }
+        return redirect()->route('login')->with('error', 'No matching user found with the provided email or password !!!');
     }
 
     public function store(User $user, StoreUserRequest $request)
@@ -32,5 +45,10 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('login')->with('success', 'Account created successfully ...');
+    }
+
+    public function logout()
+    {
+
     }
 }
