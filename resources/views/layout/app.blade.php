@@ -10,7 +10,8 @@
         <!-- Main Content -->
         <div class="w-1/2">
             <div class="bg-white rounded-lg shadow p-4">
-
+                @include('Components.error-message')
+                @include('Components.success-message')
                 @yield('content')
 
             </div>
