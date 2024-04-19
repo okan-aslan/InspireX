@@ -89,6 +89,11 @@ class TweetController extends Controller
     {
         $tweet = Tweet::findOrFail($id);
 
+        if($tweet->user_id !== Auth::user()->id)
+        {
+            return back()->with('error', "You're not authorized to delete this tweet !");
+        }
+
         $tweet->delete();
 
         return redirect()->route('dashboard.index')->with('success', 'Your tweet deleted successfully ...');
