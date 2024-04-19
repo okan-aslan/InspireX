@@ -20,13 +20,17 @@
 
     @foreach ($tweets as $tweet)
         @include('Tweet.tweet-card')
-        @auth
-            @include('Components.comment-write')
 
-            @include('Components.comment')
+        @auth
+            @include('Comments.comment-store')
         @endauth
+
+        @foreach ($tweet->comments as $comment)
+            @include('Comments.comment-card')
+        @endforeach
+
     @endforeach
     <div class="flex justify-center mt-8">
-        {{ $tweets->links() }}
+        {{ $tweets->withQueryString()->links() }}
     </div>
 @endsection
