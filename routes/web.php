@@ -32,4 +32,5 @@ Route::put('/tweets/{tweet}', [TweetController::class, 'update'])->name('tweets.
 
 Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->name('tweets.destroy');
 
+Route::post('/tweets/{tweet}/store', [CommentController::class, 'store'])->name('tweets.comments.store');
 
