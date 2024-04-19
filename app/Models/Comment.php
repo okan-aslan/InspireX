@@ -11,7 +11,7 @@ class Comment extends Model
 
     protected $fillable = [
         'tweet_id',
-        'comment_id',
+        'user_id',
         'content',
     ];
 
