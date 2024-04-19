@@ -15,11 +15,10 @@ class TweetController extends Controller
      */
     public function index()
     {
-        if (!auth()->check()) {
-            return view('dashboard.index');
-        }
+        $tweets = Tweet::orderBy('updated_at', 'DESC');
+
         return view('Tweet.tweet-index', [
-            'tweets' => Tweet::orderBy('updated_at', 'DESC')->paginate(5),
+            'tweets' => $tweets->paginate(5),
         ]);
     }
 
