@@ -24,4 +24,5 @@ Route::resource('/tweets', TweetController::class)->except('index', 'create', 's
 Route::resource('/tweets', TweetController::class)->only('show');
 
 Route::post('/tweets/{tweet}/store', [CommentController::class, 'store'])->name('tweets.comments.store')->middleware('auth');
+Route::post('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
 
