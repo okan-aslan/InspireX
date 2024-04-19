@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboradController;
 use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,9 @@ Route::post('/register', [AuthController::class, 'store']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/tweets', [TweetController::class, 'index'])->name('tweets.index');
+// Route::get('/tweets', [TweetController::class, 'index'])->name('tweets.index');
+
+// Route::resource('/tweets', TweetController::class)->except('index');
 
 Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
 
@@ -28,4 +31,5 @@ Route::get('/tweets/{tweet}/edit', [TweetController::class, 'edit'])->name('twee
 Route::put('/tweets/{tweet}', [TweetController::class, 'update'])->name('tweets.update');
 
 Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->name('tweets.destroy');
+
 
