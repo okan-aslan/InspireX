@@ -76,6 +76,10 @@ class CommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        $comment->delete();
+
+        return redirect()->route('dashboard.index')->with('success', 'Comment deleted successfully ...');
     }
 }
