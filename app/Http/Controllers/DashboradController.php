@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tweet;
 use Illuminate\Http\Request;
 
 class DashboradController extends Controller
@@ -12,6 +13,8 @@ class DashboradController extends Controller
         {
             return redirect()->route('tweets.index');
         }
-        return view('welcome');
+        return view('welcome', [
+            'tweets' => Tweet::orderBy('created_at', 'DESC')->get(),
+        ]);
     }
 }
