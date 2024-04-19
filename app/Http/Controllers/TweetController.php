@@ -19,7 +19,7 @@ class TweetController extends Controller
             return view('dashboard.index');
         }
         return view('Tweet.tweet-index', [
-            'tweets' => Tweet::orderBy('created_at', 'DESC')->get(),
+            'tweets' => Tweet::orderBy('updated_at', 'DESC')->paginate(5),
         ]);
     }
 
