@@ -31,7 +31,7 @@ class AuthController extends Controller
         if (auth()->attempt($validated)) {
             request()->session()->regenerate();
 
-            return redirect()->route('tweets.index')->with('success', 'User logged-in successfully ...');
+            return redirect()->route('dashboard.index')->with('success', 'User logged-in successfully ...');
         }
         return redirect()->route('login')->with('error', 'No matching user found with the provided email or password !!!');
     }
