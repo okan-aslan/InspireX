@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -25,9 +28,23 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Tweet $tweet, Request $request)
     {
-        //
+        $request->only('tweet_id', 'user_id', 'content');
+
+        $validated = $request->validate([
+            'content' => 'required|min:5|max:255'
+        ]);
+
+        $user_id = Auth::user()->id;
+
+        Comment::create([
+            'tweet_id' => $tweet->id,
+            'user_id' => $user_id,
+            'content' => $validated['content'],
+        ]);
+
+        return redirect()->route('dashboard.index')->with('success', 'Comment posted successfully ...');
     }
 
     /**
