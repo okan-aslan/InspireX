@@ -20,16 +20,18 @@
                 <button class="text-blue-500 hover:text-blue-700">Like</button>
                 <span class="ml-2 text-gray-500">{{ $tweet->likes }} Likes</span>
             </div>
-            <div>
-                <a href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}"
-                    class="text-green-500 hover:text-green-700">Edit
-                    Tweet</a>
-                <form action="{{ route('tweets.destroy', $tweet->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="border-2 text-red-500 hover:text-red-700">Delete</button>
-                </form>
-            </div>
+            @auth
+                <div>
+                    <a href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}"
+                        class="text-green-500 hover:text-green-700">Edit
+                        Tweet</a>
+                    <form action="{{ route('tweets.destroy', $tweet->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="border-2 text-red-500 hover:text-red-700">Delete</button>
+                    </form>
+                </div>
+            @endauth
         </div>
     </div>
 @endsection
