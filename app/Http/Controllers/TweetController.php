@@ -42,7 +42,7 @@ class TweetController extends Controller
             'content' => $request['content'],
         ]);
 
-        return redirect()->route('tweets.index')->with('success', 'Your tweet has been shared successfully.');
+        return redirect()->route('dashboard.index')->with('success', 'Your tweet has been shared successfully.');
     }
 
     /**
@@ -79,7 +79,7 @@ class TweetController extends Controller
 
             $tweet->save();
 
-            return redirect()->route('tweets.index')->with('success', 'Tweet updated successfully.');
+            return redirect()->route('dashboard.index')->with('success', 'Tweet updated successfully.');
     }
 
     /**
@@ -91,6 +91,6 @@ class TweetController extends Controller
 
         $tweet->delete();
 
-        return redirect()->route('tweets.index')->with('success', 'Your tweet deleted successfully ...');
+        return redirect()->route('dashboard.index')->with('success', 'Your tweet deleted successfully ...');
     }
 }
