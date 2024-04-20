@@ -4,6 +4,18 @@
     <form action="{{ route('tweets.update', $tweet->id) }}" method="POST">
         @csrf
         @method('PUT')
+
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">Error!</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="mb-8">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center">
@@ -16,7 +28,9 @@
                 <div class="text-gray-500">{{ $tweet->created_at }}</div>
             </div>
             <div class="mt-4">
-                <input class="text-lg border-2" name="content" id="content" value="{{ $tweet->content }}"></input>
+                <textarea
+                    class="mt-2 block w-full rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    name="content" id="content" value="{{ $tweet->content }}">{{ $tweet->content }}</textarea>
             </div>
             <div class="mt-4 flex justify-between items-center">
                 <div>
