@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Tweet;
-use Illuminate\Http\Request;
 
 class DashboradController extends Controller
 {
