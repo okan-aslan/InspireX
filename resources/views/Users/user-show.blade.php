@@ -23,7 +23,8 @@
         </div>
         <div class="flex justify-between items-center mt-6">
             <div>
-                <p class="flex items-center text-gray-600"><i class="material-icons mr-1">people</i>100</p>
+                <p class="flex items-center text-gray-600"><i
+                        class="material-icons mr-1">people</i>{{ $user->followers->count() }}</p>
                 <p class="flex items-center text-gray-600"><i
                         class="material-icons mr-1">create</i>{{ $user->tweets->count() }}</p>
                 <p class="flex items-center text-gray-600"><i
@@ -33,8 +34,19 @@
         @auth
             @if (Auth::id() !== $user->id)
                 <div class="flex justify-end mt-4">
-                    <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full">Follow</button>
+                    @if (Auth::user()->follows($user))
+                        <form action="{{ route('users.unfollow', $user->id) }}" method="POST">
+                            @csrf
+                            <button
+                                class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full">Unfollow</button>
+                        </form>
+                    @else
+                        <form action="{{ route('users.follow', $user->id) }}" method="POST">
+                            @csrf
+                            <button
+                                class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full">Follow</button>
+                        </form>
+                    @endif
                 </div>
             @endif
         @endauth
