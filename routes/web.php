@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboradController;
 use App\Http\Controllers\TweetController;
-use App\Models\Tweet;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboradController::class, 'index'])->name('dashboard.index');
@@ -26,4 +26,8 @@ Route::resource('/tweets', TweetController::class)->only('show');
 Route::post('/tweets/{tweet}/store', [CommentController::class, 'store'])->name('tweets.comments.store')->middleware('auth');
 
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
+
+Route::resource('/users', UserController::class)->only('update', 'edit', 'show')->middleware('auth');
+
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->name('profile.index');
 
