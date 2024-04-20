@@ -3,7 +3,7 @@
         <div class="flex items-center mt-2">
             <div class="w-8 h-8 rounded-full bg-gray-300"></div>
             <div class="ml-2">
-                <div class="font-semibold text-gray-700">{{ $comment->user->name }}</div>
+                <a href="{{route('users.show', $comment->user->id)}}" class="font-semibold text-gray-700 underline">{{ $comment->user->name }}</a>
                 <div class="text-gray-500">{{ $comment->updated_at }}</div>
             </div>
             @auth
