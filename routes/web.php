@@ -31,3 +31,8 @@ Route::resource('/users', UserController::class)->only('update', 'edit', 'show')
 
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->name('profile.index');
 
+Route::post('/users/{user}/follow', [UserController::class, 'follow'])->middleware('auth')->name('users.follow');
+
+Route::post('/users/{user}/unfollow', [UserController::class, 'unfollow'])->middleware('auth')->name('users.unfollow');
+
+
