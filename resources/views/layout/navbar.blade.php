@@ -5,7 +5,7 @@
         </div>
         <div class="flex items-center space-x-4">
             @auth
-                <a href="#"
+                <a href="{{route('profile.index')}}"
                     class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full">{{ Auth::user()->name }}</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
