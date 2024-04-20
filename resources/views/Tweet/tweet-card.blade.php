@@ -1,10 +1,9 @@
-<div class="mb-8">
+<div class="mb-4">
     <div class="flex items-center justify-between mb-4">
         <div class="flex items-center">
             <div class="w-12 h-12 rounded-full bg-gray-300"></div>
             <div class="ml-4">
-                <div class="font-bold">{{$tweet->user->name}}</div>
-                <div class="text-gray-500">@johndoe</div>
+                <a href="{{route('users.show', $tweet->user->id)}}" class="font-bold underline">{{$tweet->user->name}}</a>
             </div>
         </div>
         <div class="text-gray-500">{{$tweet->created_at}}</div>
